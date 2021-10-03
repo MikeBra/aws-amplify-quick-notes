@@ -87,6 +87,7 @@ const StyledTab = styled(Tab)`
 
 const Screens = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  const userName = Auth.user.attributes.email;
 
   return (
     <>
@@ -97,7 +98,7 @@ const Screens = () => {
             Auth.signOut().then(() => window.location.reload());
           }}
         >
-          Sign Out
+          Sign Out {userName}
         </SignOutButton>
       </Header>
       <StyledTabs index={tabIndex} onChange={index => setTabIndex(index)}>

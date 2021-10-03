@@ -4,4 +4,20 @@ type Note @model @auth(rules: [{ allow: owner }]) {
   text: String!
   createdAt: String
   updatedAt: String
+  comments: [Comment] @connection(name: "NoteComments", sortField: "createdAt")
+}
+
+type Comment @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  text: String!
+  createdAt: String
+  updatedAt: String
+  note: Note @connection(name: "NoteComments", sortField: "createdAt")
+}
+
+type Event @model @key(name: "queryName", fields:["queryName", "createdAt"], queryField: "itemsByDate") {
+    id: ID!
+    name: String!
+    createdAt: String!
+    queryName: String!
 }
